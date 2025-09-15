@@ -1,3 +1,4 @@
+
 // Global error logging for runtime errors
 
 import { Platform } from "react-native";

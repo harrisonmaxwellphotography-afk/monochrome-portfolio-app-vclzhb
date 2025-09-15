@@ -1,3 +1,4 @@
+
 import { Text, TouchableOpacity, StyleSheet, ViewStyle, TextStyle } from 'react-native';
 import { colors } from '../styles/commonStyles';
 

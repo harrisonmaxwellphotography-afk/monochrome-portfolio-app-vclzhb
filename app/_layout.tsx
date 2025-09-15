@@ -5,7 +5,7 @@ import { Platform } from 'react-native';
 import { useEffect, useState } from 'react';
 import { setupErrorLogging } from '../utils/errorLogger';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
-import { useFonts, Inter_300Light, Inter_400Regular, Inter_500Medium, Inter_600SemiBold } from '@expo-google-fonts/inter';
+import { useFonts, Basic_400Regular } from '@expo-google-fonts/basic';
 import * as SplashScreen from 'expo-splash-screen';
 
 const STORAGE_KEY = 'emulated_device';
@@ -19,10 +19,7 @@ export default function RootLayout() {
   const [storedEmulate, setStoredEmulate] = useState<string | null>(null);
 
   const [fontsLoaded] = useFonts({
-    Inter_300Light,
-    Inter_400Regular,
-    Inter_500Medium,
-    Inter_600SemiBold,
+    Basic_400Regular,
   });
 
   useEffect(() => {

@@ -35,14 +35,14 @@ export const buttonStyles = StyleSheet.create({
   text: {
     color: colors.background,
     fontSize: 16,
-    fontWeight: '600',
-    fontFamily: 'Inter_600SemiBold',
+    fontWeight: '400',
+    fontFamily: 'Basic_400Regular',
   },
   textSecondary: {
     color: colors.text,
     fontSize: 16,
-    fontWeight: '600',
-    fontFamily: 'Inter_600SemiBold',
+    fontWeight: '400',
+    fontFamily: 'Basic_400Regular',
   },
 });
 
@@ -66,35 +66,35 @@ export const commonStyles = StyleSheet.create({
   },
   title: {
     fontSize: 32,
-    fontWeight: '300',
+    fontWeight: '400',
     textAlign: 'center',
     color: colors.text,
     marginBottom: 8,
     letterSpacing: 2,
-    fontFamily: 'Inter_300Light',
+    fontFamily: 'Basic_400Regular',
   },
   subtitle: {
     fontSize: 18,
-    fontWeight: '300',
+    fontWeight: '400',
     textAlign: 'center',
     color: colors.textSecondary,
     marginBottom: 32,
     letterSpacing: 1,
-    fontFamily: 'Inter_300Light',
+    fontFamily: 'Basic_400Regular',
   },
   text: {
     fontSize: 16,
     fontWeight: '400',
     color: colors.text,
     lineHeight: 24,
-    fontFamily: 'Inter_400Regular',
+    fontFamily: 'Basic_400Regular',
   },
   textSecondary: {
     fontSize: 14,
     fontWeight: '400',
     color: colors.textSecondary,
     lineHeight: 20,
-    fontFamily: 'Inter_400Regular',
+    fontFamily: 'Basic_400Regular',
   },
   section: {
     width: '100%',
@@ -133,10 +133,10 @@ export const commonStyles = StyleSheet.create({
   },
   headerTitle: {
     fontSize: 24,
-    fontWeight: '300',
+    fontWeight: '400',
     color: colors.text,
     letterSpacing: 1,
-    fontFamily: 'Inter_300Light',
+    fontFamily: 'Basic_400Regular',
   },
   backButton: {
     position: 'absolute',

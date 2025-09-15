@@ -55,6 +55,17 @@ export default function HomeScreen() {
       >
         {/* Hero Section */}
         <View style={[commonStyles.centerContent, { paddingVertical: 60 }]}>
+          {/* Logo Image */}
+          <Image
+            source={require('../assets/images/3148fbc6-61bd-4cb1-bcc7-5ee9d757b83c.jpeg')}
+            style={{
+              width: 120,
+              height: 120,
+              marginBottom: 24,
+              borderRadius: 60,
+            }}
+            resizeMode="cover"
+          />
           <Text style={commonStyles.title}>HARRISON</Text>
           <Text style={commonStyles.subtitle}>Photography Portfolio</Text>
         </View>

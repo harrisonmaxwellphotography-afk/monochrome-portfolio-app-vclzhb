@@ -22,7 +22,7 @@ const galleryCategories = [
   {
     id: 'event',
     title: 'Event Photography',
-    description: 'Weddings, parties, and special occasions',
+    description: 'Concerts, Parties and special occasions',
     image: 'https://images.unsplash.com/photo-1511795409834-ef04bbd61622?w=400&h=300&fit=crop',
   },
   {
@@ -57,10 +57,6 @@ export default function HomeScreen() {
         <View style={[commonStyles.centerContent, { paddingVertical: 60 }]}>
           <Text style={commonStyles.title}>HARRISON</Text>
           <Text style={commonStyles.subtitle}>Photography Portfolio</Text>
-          <Text style={[commonStyles.textSecondary, { textAlign: 'center', maxWidth: 280 }]}>
-            Capturing moments through a minimalist lens. 
-            Explore my work across different photography styles.
-          </Text>
         </View>
 
         {/* Gallery Categories */}

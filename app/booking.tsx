@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import { Text, View, ScrollView, TouchableOpacity, TextInput, Alert } from 'react-native';
+import { Text, View, ScrollView, TouchableOpacity, TextInput, Alert, Linking } from 'react-native';
 import { commonStyles, colors, buttonStyles } from '../styles/commonStyles';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
@@ -53,11 +53,43 @@ export default function BookingScreen() {
       return;
     }
 
-    Alert.alert(
-      'Booking Request Sent',
-      'Thank you for your interest! I will contact you within 24 hours to confirm your session details.',
-      [{ text: 'OK', onPress: () => router.back() }]
-    );
+    const selectedSession = sessionTypes.find(s => s.id === selectedSessionType);
+    const emailSubject = encodeURIComponent('Photography Session Booking Request');
+    const emailBody = encodeURIComponent(`
+Hello Harrison,
+
+I would like to book a photography session with the following details:
+
+Session Type: ${selectedSession?.title} (${selectedSession?.duration}, ${selectedSession?.price})
+Name: ${name}
+Email: ${email}
+Phone: ${phone}
+Preferred Date: ${formatDate(selectedDate)}
+
+Additional Details:
+${message || 'No additional details provided.'}
+
+Please let me know your availability and next steps.
+
+Best regards,
+${name}
+    `);
+
+    const mailtoUrl = `mailto:harrisonmaxwellphotography@gmail.com?subject=${emailSubject}&body=${emailBody}`;
+
+    Linking.openURL(mailtoUrl).then(() => {
+      Alert.alert(
+        'Email Client Opened',
+        'Your email client has been opened with the booking details. Please send the email to complete your booking request.',
+        [{ text: 'OK', onPress: () => router.back() }]
+      );
+    }).catch(() => {
+      Alert.alert(
+        'Email Not Available',
+        'Please send an email to harrisonmaxwellphotography@gmail.com with your booking details.',
+        [{ text: 'OK' }]
+      );
+    });
   };
 
   const formatDate = (date: Date) => {

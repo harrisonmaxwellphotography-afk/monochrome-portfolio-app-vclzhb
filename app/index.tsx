@@ -1,52 +1,134 @@
-import React, { useState } from 'react';
-import { Text, View, Image, TouchableOpacity } from 'react-native';
+
+import React from 'react';
+import { Text, View, ScrollView, TouchableOpacity, Image } from 'react-native';
 import { commonStyles, colors } from '../styles/commonStyles';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import SimpleBottomSheet from '../components/BottomSheet';
+import { useRouter } from 'expo-router';
+import Icon from '../components/Icon';
 
+const galleryCategories = [
+  {
+    id: 'studio',
+    title: 'Studio Photography',
+    description: 'Professional studio portraits and creative sessions',
+    image: 'https://images.unsplash.com/photo-1554048612-b6a482b224b8?w=400&h=300&fit=crop',
+  },
+  {
+    id: 'fashion',
+    title: 'Fashion Photography',
+    description: 'Editorial and commercial fashion shoots',
+    image: 'https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=400&h=300&fit=crop',
+  },
+  {
+    id: 'event',
+    title: 'Event Photography',
+    description: 'Weddings, parties, and special occasions',
+    image: 'https://images.unsplash.com/photo-1511795409834-ef04bbd61622?w=400&h=300&fit=crop',
+  },
+  {
+    id: 'product',
+    title: 'Product Photography',
+    description: 'Commercial product and lifestyle photography',
+    image: 'https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=400&h=300&fit=crop',
+  },
+];
 
-export default function MainScreen() {
-  const [isBottomSheetVisible, setIsBottomSheetVisible] = useState(false);
+export default function HomeScreen() {
+  const router = useRouter();
 
-  const handleOpenBottomSheet = () => {
-    setIsBottomSheetVisible(true);
+  const navigateToGallery = (categoryId: string) => {
+    console.log('Navigating to gallery:', categoryId);
+    router.push(`/gallery/${categoryId}`);
+  };
+
+  const navigateToBooking = () => {
+    console.log('Navigating to booking');
+    router.push('/booking');
   };
 
   return (
-      <SafeAreaView style={commonStyles.container}>
-        <View style={commonStyles.content}>
-          <Image
-            source={require('../assets/images/final_quest_240x240.png')}
-            style={{ width: 180, height: 180 }}
-            resizeMode="contain"
-          />
-          <Text style={commonStyles.title}>This is a placeholder app.</Text>
-          <Text style={commonStyles.text}>Your app will be displayed here when it's ready.</Text>
+    <SafeAreaView style={commonStyles.container}>
+      <ScrollView 
+        style={commonStyles.content}
+        showsVerticalScrollIndicator={false}
+        contentContainerStyle={{ paddingBottom: 40 }}
+      >
+        {/* Hero Section */}
+        <View style={[commonStyles.centerContent, { paddingVertical: 60 }]}>
+          <Text style={commonStyles.title}>HARRISON</Text>
+          <Text style={commonStyles.subtitle}>Photography Portfolio</Text>
+          <Text style={[commonStyles.textSecondary, { textAlign: 'center', maxWidth: 280 }]}>
+            Capturing moments through a minimalist lens. 
+            Explore my work across different photography styles.
+          </Text>
+        </View>
 
+        {/* Gallery Categories */}
+        <View style={commonStyles.section}>
+          <Text style={[commonStyles.text, { fontSize: 20, fontWeight: '300', marginBottom: 24, letterSpacing: 1 }]}>
+            Portfolio
+          </Text>
+          
+          {galleryCategories.map((category) => (
+            <TouchableOpacity
+              key={category.id}
+              style={commonStyles.galleryCard}
+              onPress={() => navigateToGallery(category.id)}
+              activeOpacity={0.8}
+            >
+              <Image
+                source={{ uri: category.image }}
+                style={{
+                  width: '100%',
+                  height: 200,
+                  backgroundColor: colors.backgroundAlt,
+                }}
+                resizeMode="cover"
+              />
+              <View style={{ padding: 20 }}>
+                <Text style={[commonStyles.text, { fontSize: 18, fontWeight: '400', marginBottom: 8 }]}>
+                  {category.title}
+                </Text>
+                <Text style={commonStyles.textSecondary}>
+                  {category.description}
+                </Text>
+              </View>
+            </TouchableOpacity>
+          ))}
+        </View>
+
+        {/* Book Session Section */}
+        <View style={commonStyles.section}>
           <TouchableOpacity
             style={{
               backgroundColor: colors.primary,
-              paddingHorizontal: 24,
-              paddingVertical: 12,
-              borderRadius: 8,
-              marginTop: 30,
+              paddingVertical: 20,
+              paddingHorizontal: 32,
+              borderRadius: 12,
+              alignItems: 'center',
+              flexDirection: 'row',
+              justifyContent: 'center',
             }}
-            onPress={handleOpenBottomSheet}
+            onPress={navigateToBooking}
+            activeOpacity={0.8}
           >
-            <Text style={{
-              color: colors.text,
-              fontSize: 16,
-              fontWeight: '600',
-            }}>
-              Open Bottom Sheet
+            <Icon name="camera" size={24} color={colors.background} style={{ marginRight: 12 }} />
+            <Text style={[commonStyles.text, { color: colors.background, fontSize: 18, fontWeight: '400' }]}>
+              Book a Session
             </Text>
           </TouchableOpacity>
         </View>
 
-        <SimpleBottomSheet
-          isVisible={isBottomSheetVisible}
-          onClose={() => setIsBottomSheetVisible(false)}
-        />
-      </SafeAreaView>
+        {/* Contact Info */}
+        <View style={[commonStyles.section, { alignItems: 'center' }]}>
+          <Text style={[commonStyles.textSecondary, { textAlign: 'center', fontSize: 12 }]}>
+            Professional photography services
+          </Text>
+          <Text style={[commonStyles.textSecondary, { textAlign: 'center', fontSize: 12, marginTop: 4 }]}>
+            Available for bookings worldwide
+          </Text>
+        </View>
+      </ScrollView>
+    </SafeAreaView>
   );
 }
